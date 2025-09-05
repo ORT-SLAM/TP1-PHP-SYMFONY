@@ -1,30 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Livre - Acceuil{% endblock %}
+{% block title %}Bibliothèque Universitaire{% endblock %}
 
 {% block stylesheets %}
     <style>
-        .centered{
+        .bibliotheque-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fdfdfd;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            font-family: Arial, sans-serif;
             text-align: center;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        a {
+        .bibliotheque-container h1 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .bibliotheque-container p {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+        .nblivres {
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #2980b9;
+            font-weight: bold;
             text-decoration: none;
-            color: black;
         }
 
-        a:hover {
-            color: red;
+        .home-link:hover {
+            color: #e74c3c;
             text-decoration: underline;
+        }
+        .online {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
         }
     </style>
 {% endblock %}
 
 {% block body %}
-<div class="centered">
-    <a href="{{ path('app_livre') }}">Voir le catalogue de livres</a>
-</div>
+    <div class="bibliotheque-container">
+        <h1>📚 Bibliothèque Universitaire</h1>
+        <p><strong>Horaires d'ouverture :</strong> Lundi - Vendredi, 8h00 - 20h00</p>
+        <p><strong>Nombre d'ouvrages disponibles :</strong>
+            <span class="nblivres">{{ nblivres }}</span>
+        </p>
+        <div class="online">
+            <a class="home-link" href="{{ path('app_catalogue') }}">Voir la liste des livres</a>
+            <a class="home-link" href="{{ path('app_statistiques') }}">Voir les statistiques</a>
+        </div>
+    </div>
 {% endblock %}

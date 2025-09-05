@@ -39,12 +39,25 @@
             color: red;
             font-weight: bold;
         }
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #2980b9;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
     </style>
 {% endblock %}
 
 {% block body %}
     <div class="livre-container">
-        <a href="{{ path("app_livre") }}">Retour à liste des livres</a>
+        <a class="home-link" href="{{ path('app_catalogue') }}">Retour à la liste de livres</a></a>
         <h1>{{ livre.titre }}</h1>
         <p><strong>ID :</strong> {{ livre.id }}</p>
         <p><strong>Auteur :</strong> {{ livre.auteur }}</p>

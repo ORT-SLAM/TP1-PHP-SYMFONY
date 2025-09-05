@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques - Bibliothèque{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .stats-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fdfdfd;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            font-family: Arial, sans-serif;
+        }
+
+        .stats-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .stats-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stats-container li {
+            margin: 8px 0;
+            font-size: 18px;
+        }
+
+        .genre-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #2980b9;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="stats-container">
+        <h1>📊 Statistiques de la Bibliothèque</h1>
+
+        <ul>
+            <li><strong>Nombre total d’ouvrages :</strong> {{ totalLivres }}</li>
+            <li>
+                <strong>Répartition par genre :</strong>
+                <ul class="genre-list">
+                    {% for genre, nb in genres %}
+                        <li>{{ genre|capitalize }} : {{ nb }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><strong>Disponibles :</strong> {{ disponibles }}</li>
+            <li><strong>Empruntés :</strong> {{ empruntes }}</li>
+            <li><strong>Auteur le plus représenté :</strong> {{ auteurTop }}</li>
+        </ul>
+        <a class="home-link" href="{{ path('app_home') }}">Retour à l'acceuil</a>
+    </div>
+{% endblock %}
