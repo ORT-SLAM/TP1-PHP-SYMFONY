@@ -82,4 +82,19 @@ final class LivreController extends AbstractController
             'livre' => $this->livres[$id],
         ]);
     }
+
+    #[Route('/catalogue/genre/{genre}', name: 'app_livre_genre', requirements: ['genre' => '\w+'])]
+    public function filterByGenre(string $genre): Response {
+        $genredBooks = [];
+        foreach ($this->livres as $livre) {
+            if ($livre['genre'] === $genre) {
+                $genredBooks[] = $livre;
+            }
+        }
+
+        return $this->render('livre/index.html.twig', [
+            'controller_name' => 'LivreController',
+            'livres' => $genredBooks,
+        ]);
+    }
 }

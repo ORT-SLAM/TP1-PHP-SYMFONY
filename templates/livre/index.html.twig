@@ -61,13 +61,30 @@
             color: #e74c3c;
             text-decoration: underline;
         }
+        .online{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
     </style>
 {% endblock %}
 
 {% block body %}
     <div class="catalogue-container">
         <h1>📚 Catalogue des livres</h1>
-        <a class="home-link" href="{{ path('app_home') }}">⬅ Retour à l'accueil</a>
+        <div class="online">
+            <a class="home-link" href="{{ path('app_home') }}">⬅ Retour à l'accueil</a>
+            <div>
+                <a class="home-link" href="{{ path('app_livre_genre', {'genre': 'informatique'}) }}">Informatique</a>
+                <a class="home-link" href="{{ path('app_livre_genre', {'genre': 'litterature'}) }}">Litterature</a>
+                <a class="home-link" href="{{ path('app_livre_genre', {'genre': 'sciences'}) }}">Sciences</a>
+                <a class="home-link" href="{{ path('app_livre_genre', {'genre': 'histoire'}) }}">Histoire</a>
+            </div>
+        </div>
+
+
+
         <ul class="livres-list">
             {% for livre in livres %}
                 <li>
