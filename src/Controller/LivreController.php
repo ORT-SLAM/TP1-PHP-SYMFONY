@@ -21,16 +21,13 @@ final class LivreController extends AbstractController
 
     #[Route('/livre/{id}', name: 'app_livre_id', requirements: ['page' => '\d+'], methods: ['GET'])]
     public function getBookDataById(int $id): Response {
-        $trouve = false;
 
-        foreach ($this->getLivres() as $livre) {
-            if ($livre['id'] === $id) {
-                $trouve = true;
-            }
-        }
+        $livre = array_values(array_filter($this->getLivres(), function ($item) use ($id) {
+            return $item['id'] === $id;
+        }))[0] ?? null;
 
-        if (!$trouve) {
-            throw $this->createNotFoundException();
+        if (!$livre) {
+            throw $this->createNotFoundException("Book not found");
         }
 
         return $this->render('livre/id.html.twig', [
