@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue des livres{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .catalogue-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .catalogue-container h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: #2c3e50;
+        }
+
+        .catalogue-container a.home-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2980b9;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .catalogue-container a.home-link:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
+
+        .livres-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .livres-list li {
+            background: #fdfdfd;
+            margin: 10px 0;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .livres-list li:hover {
+            background: #f9f9f9;
+            transform: translateX(5px);
+        }
+
+        .livres-list a {
+            color: #2c3e50;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .livres-list a:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="catalogue-container">
+        <h1>📚 Catalogue des livres</h1>
+        <a class="home-link" href="{{ path('app_home') }}">⬅ Retour à l'accueil</a>
+        <ul class="livres-list">
+            {% for livre in livres %}
+                <li>
+                    <a href="{{ path('app_livre_id', {'id': livre.id}) }}">
+                        {{ livre.titre }} — <small>{{ livre.auteur }}</small>
+                    </a>
+                </li>
+            {% else %}
+                <li>Aucun livre disponible pour le moment.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

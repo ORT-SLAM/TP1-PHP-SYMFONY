@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ livre.titre }}{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .livre-container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fdfdfd;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            font-family: Arial, sans-serif;
+        }
+
+        .livre-container h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .livre-container p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .livre-container strong {
+            color: #34495e;
+        }
+
+        .livre-disponible {
+            color: green;
+            font-weight: bold;
+        }
+
+        .livre-indispo {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="livre-container">
+        <a href="{{ path("app_livre") }}">Retour à liste des livres</a>
+        <h1>{{ livre.titre }}</h1>
+        <p><strong>ID :</strong> {{ livre.id }}</p>
+        <p><strong>Auteur :</strong> {{ livre.auteur }}</p>
+        <p><strong>ISBN :</strong> {{ livre.isbn }}</p>
+        <p><strong>Genre :</strong> {{ livre.genre }}</p>
+        <p><strong>Année de publication :</strong> {{ livre.annee_publication }}</p>
+        <p><strong>Nombre de pages :</strong> {{ livre.nombre_pages }}</p>
+        <p><strong>Disponible :</strong>
+            {% if livre.disponible %}
+                <span class="livre-disponible">Oui ({{ livre.nombre_exemplaires }} exemplaire(s))</span>
+            {% else %}
+                <span class="livre-indispo">Non</span>
+            {% endif %}
+        </p>
+        <p><strong>Résumé :</strong> {{ livre.resume }}</p>
+        <p><strong>Éditeur :</strong> {{ livre.editeur }}</p>
+        <p><strong>Cote :</strong> {{ livre.cote }}</p>
+    </div>
+{% endblock %}

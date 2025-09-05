@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre - Acceuil{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .centered{
+            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: red;
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="centered">
+    <a href="{{ path('app_livre') }}">Voir le catalogue de livres</a>
+</div>
+{% endblock %}
