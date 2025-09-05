@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class LivreController extends AbstractController
 {
-    #[Route('/catalogue', name: 'app_catalogue')]
+    #[Route('/catalogue', name: 'app_catalogue', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('livre/index.html.twig', [
@@ -19,7 +19,7 @@ final class LivreController extends AbstractController
         ]);
     }
 
-    #[Route('/livre/{id}', name: 'app_livre_id', requirements: ['page' => '\d+'])]
+    #[Route('/livre/{id}', name: 'app_livre_id', requirements: ['page' => '\d+'], methods: ['GET'])]
     public function getBookDataById(int $id): Response {
         $trouve = false;
 
@@ -39,7 +39,7 @@ final class LivreController extends AbstractController
         ]);
     }
 
-    #[Route('/catalogue/genre/{genre}', name: 'app_livre_genre', requirements: ['genre' => '\w+'])]
+    #[Route('/catalogue/genre/{genre}', name: 'app_livre_genre', requirements: ['genre' => '\w+'], methods: ['GET'])]
     public function filterByGenre(string $genre): Response {
         $genredBooks = [];
         foreach ($this->getLivres() as $livre) {
@@ -54,12 +54,12 @@ final class LivreController extends AbstractController
         ]);
     }
 
-    #[Route('api/catalogue', name: 'api_catalogue')]
+    #[Route('api/catalogue', name: 'api_catalogue', methods: ['GET'])]
     public function getAllBooks(): JsonResponse {
         return new JsonResponse($this->getLivres());
     }
 
-    #[Route('/statistiques', name: 'app_statistiques')]
+    #[Route('/statistiques', name: 'app_statistiques', methods: ['GET'])]
     public function getStatistiques() : Response {
         $livres = $this->getLivres();
         $totalLivres = count($livres);
